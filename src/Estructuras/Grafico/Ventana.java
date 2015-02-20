@@ -5,10 +5,14 @@
  */
 package Estructuras.Grafico;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Byron <Byron.Jose at your.org>
  */
 public class Ventana {
+    
+    JFrame ventana;
     
 }
