@@ -6,6 +6,7 @@
 package Estructuras.Grafico;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -14,5 +15,6 @@ import javax.swing.JFrame;
 public class Ventana {
     
     JFrame ventana;
+    JPanel panel;
     
 }
