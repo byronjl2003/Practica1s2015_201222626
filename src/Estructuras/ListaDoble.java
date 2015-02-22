@@ -5,8 +5,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 public class ListaDoble {
-    NodoLista primero;
-    NodoLista ultimo;
+    private NodoLista primero;
+    private NodoLista ultimo;
     
     public ListaDoble()
     {
@@ -14,19 +14,19 @@ public class ListaDoble {
     }
     public boolean vacia()
     {
-        return this.primero==null;
+        return this.getPrimero()==null;
     }
     public void Insertar(P_Z dato)
     {
         if(vacia())
         {
-            this.primero = this.ultimo = new NodoLista(dato);
+            this.setPrimero(this.ultimo = new NodoLista(dato));
         }
         else
         {
-            ultimo.setNext(new NodoLista(dato));
-            ultimo.getNext().setBack(ultimo);
-            this.ultimo = ultimo.getNext();
+            getUltimo().setNext(new NodoLista(dato));
+            getUltimo().getNext().setBack(getUltimo());
+            this.setUltimo(getUltimo().getNext());
         }
         
         
@@ -36,11 +36,11 @@ public class ListaDoble {
     {
         if(!vacia())
         {
-            NodoLista eliminado = this.primero;
-            if(this.primero==this.ultimo)
-                this.primero = this.ultimo = null;
+            NodoLista eliminado = this.getPrimero();
+            if(this.getPrimero()==this.getUltimo())
+                this.setPrimero(this.ultimo = null);
             else
-                this.primero = this.primero.getNext();
+                this.setPrimero(this.getPrimero().getNext());
             return eliminado;
         }
         else
@@ -54,11 +54,11 @@ public class ListaDoble {
     {
         if(!vacia())
         {
-            NodoLista eliminado = this.ultimo;
-            if(this.primero==this.ultimo)
-                this.primero = this.ultimo = null;
+            NodoLista eliminado = this.getUltimo();
+            if(this.getPrimero()==this.getUltimo())
+                this.setPrimero(this.ultimo = null);
             else
-                this.ultimo = this.ultimo.getBack();
+                this.setUltimo(this.getUltimo().getBack());
             return eliminado;
         }
         else
@@ -139,17 +139,45 @@ public class ListaDoble {
     
     public StringBuilder Imprimir()
     {
-        NodoLista aux = this.primero;
+        NodoLista aux = this.getPrimero();
         StringBuilder recolector = new StringBuilder();
         while(aux!=null)
         {
             recolector.append(aux.getPersonaje().getNombre());
-            if(aux!=ultimo)
+            if(aux!=getUltimo())
                 recolector.append("->");
             
             aux = aux.getNext();
         }
         return recolector;
+    }
+
+    /**
+     * @return the primero
+     */
+    public NodoLista getPrimero() {
+        return primero;
+    }
+
+    /**
+     * @param primero the primero to set
+     */
+    public void setPrimero(NodoLista primero) {
+        this.primero = primero;
+    }
+
+    /**
+     * @return the ultimo
+     */
+    public NodoLista getUltimo() {
+        return ultimo;
+    }
+
+    /**
+     * @param ultimo the ultimo to set
+     */
+    public void setUltimo(NodoLista ultimo) {
+        this.ultimo = ultimo;
     }
     
 }

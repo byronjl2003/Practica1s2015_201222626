@@ -1,12 +1,17 @@
 
 package Estructuras;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class P_Z extends JLabel implements Runnable {
     
     private String nombre;
-    
+    private int ataque, defensa;
+    private ImageIcon  imagen;
+    boolean tipoataque;
+    int w;
+    NodoM contenedr;
     public P_Z()
     {
         
@@ -14,7 +19,7 @@ public class P_Z extends JLabel implements Runnable {
 
     
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**

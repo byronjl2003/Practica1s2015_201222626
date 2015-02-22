@@ -22,4 +22,18 @@ public class Cola extends ListaDoble {
         Graficar("Cola","pilaimg");
     }
     
+    public ListaDoble ObtenerPrimeros5()
+    {
+        ListaDoble nodos = new ListaDoble();
+        int cont = 0;
+        NodoLista aux = this.getPrimero();
+        while(aux!=null||cont <5)
+        {
+            nodos.Insertar(aux.getPersonaje());
+            cont++;
+            aux = aux.getNext();
+        }
+        return nodos;
+    }
+    
 }
