@@ -108,14 +108,46 @@ public class LNC {
         }
 
         
-        public StringBuilder GraficaColumna()
+        
+        public StringBuilder NodosGeneral()
         {
-            //StringBuilder recolector = new StringBuilder();
-            
+            StringBuilder recolector = new StringBuilder();
+            NC aux = this._primero;
+            while(aux!=null)
+            {
+                NCasilla aux2 = aux.getPrimero();
+                while(aux2!=null)
+                {
+                    recolector.append(aux2.ToString()+"[ label = \""+aux2.getLista().graficaMatriz()+" \" ];");
+                    aux2 = aux2.getAbajo();
+                }
+                aux = aux.getNext();
+            }
+            return recolector;
         }
         
+        public StringBuilder GraficasCol()
+        {
+            StringBuilder recolector = new StringBuilder();
+            NC aux = this._primero;
+            while(aux!=null)
+            {
+                NCasilla aux2 = aux.getPrimero();
+                while(aux2!=null)
+                {
+                    if(aux2.getArriba()!=null)
+                    {
+                        recolector.append(aux2.getArriba().ToString()+"->"+aux2.ToString()+";"+"\n");
+                        recolector.append(aux2.ToString()+"->"+aux2.getArriba().ToString()+";"+"\n");
+                    }
+                    
+                }
+                aux = aux.getNext();
+            }
+            return recolector;
+        }
 /*
-        public StringBuilder[] GraficaVertical()
+        public StringBuilder[i] GraficaVertical()
         {
             StringBuilder[] recolectores = new StringBuilder[4];
             recolectores[0] = new StringBuilder();
@@ -220,44 +252,30 @@ public class LNC {
         
         */
 
-    /**
-     * @return the _listaFilas
-     */
+  
     public LNF getListaFilas() {
         return _listaFilas;
     }
 
-    /**
-     * @param _listaFilas the _listaFilas to set
-     */
     public void setListaFilas(LNF _listaFilas) {
         this._listaFilas = _listaFilas;
     }
 
-    /**
-     * @return the _primero
-     */
     public NC getPrimero() {
         return _primero;
     }
 
-    /**
-     * @param _primero the _primero to set
-     */
+    
     public void setPrimero(NC _primero) {
         this._primero = _primero;
     }
 
-    /**
-     * @return the _ultimo
-     */
+    
     public NC getUltimo() {
         return _ultimo;
     }
 
-    /**
-     * @param _ultimo the _ultimo to set
-     */
+    
     public void setUltimo(NC _ultimo) {
         this._ultimo = _ultimo;
     }

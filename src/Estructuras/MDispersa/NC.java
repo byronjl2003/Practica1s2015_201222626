@@ -122,22 +122,7 @@ public class NC {
         }
 
 
-        public StringBuilder GraficarColumna()
-        {
-           // StringBuilder recolector = new StringBuilder();
-        }
         
-        public StringBuilder GraficaEncabezado()
-        {
-            StringBuilder recolector = new StringBuilder();
-            NCasilla aux = this._primero;
-            while(aux!=null)
-            {
-                
-                aux = aux.getAbajo();
-            }
-            
-        }
         /*
         
         public NCasilla TraerPrimeroPorDim(int dim)
@@ -162,72 +147,52 @@ public class NC {
             return "C_" + this.getNum();
         }
 
-    /**
-     * @return the _num
-     */
+    
     public int getNum() {
         return _num;
     }
 
-    /**
-     * @param _num the _num to set
-     */
+   
     public void setNum(int _num) {
         this._num = _num;
     }
 
-    /**
-     * @return the _primero
-     */
+   
     public NCasilla getPrimero() {
         return _primero;
     }
 
-    /**
-     * @param _primero the _primero to set
-     */
+   
     public void setPrimero(NCasilla _primero) {
         this._primero = _primero;
     }
 
-    /**
-     * @return the _ultimo
-     */
+    
     public NCasilla getUltimo() {
         return _ultimo;
     }
 
-    /**
-     * @param _ultimo the _ultimo to set
-     */
+   
     public void setUltimo(NCasilla _ultimo) {
         this._ultimo = _ultimo;
     }
 
-    /**
-     * @return the _next
-     */
+   
     public NC getNext() {
         return _next;
     }
 
-    /**
-     * @param _next the _next to set
-     */
+    
     public void setNext(NC _next) {
         this._next = _next;
     }
 
-    /**
-     * @return the _back
-     */
+   
     public NC getBack() {
         return _back;
     }
 
-    /**
-     * @param _back the _back to set
-     */
+    
     public void setBack(NC _back) {
         this._back = _back;
     }

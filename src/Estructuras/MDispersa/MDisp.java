@@ -31,7 +31,16 @@ public class MDisp {
 
         }
         
-        pubic
+        public void Graficar()
+        {
+            StringBuilder recolector = new StringBuilder();
+            recolector.append("digraph g{"+"/n");
+            recolector.append(this._lcolumnas.NodosGeneral()+"\n");
+            recolector.append(this._lcolumnas.getListaFilas().graffila()+"\n");
+            recolector.append(this._lcolumnas.GraficasCol()+"\n");
+            recolector.append("\n");
+            
+        }
         /*
         public StringBuilder[] graficarMDispersa()
         {

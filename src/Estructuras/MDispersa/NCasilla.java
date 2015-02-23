@@ -77,7 +77,7 @@ public class NCasilla {
         
         public void Agregar(P_Z personaje)
         {
-            this.lista.Insertar(personaje);
+            this.getLista().Insertar(personaje);
         }
         
         public StringBuilder graficaCasillaH()
@@ -85,8 +85,15 @@ public class NCasilla {
             StringBuilder recolector = new StringBuilder();
             if(this.getIzquierda()!=null)
             {
-                recolector
+                recolector.append(this.getIzquierda().ToString()+"->"+this.ToString()+";\n");
+                recolector.append(this.ToString()+"->"+this.getIzquierda().ToString()+";\n");
             }
+            if(this.getADerecha()!=null)
+            {
+                recolector.append(this.ToString()+"->"+this.getADerecha().ToString()+";\n");
+                recolector.append(this.getADerecha().ToString()+"->"+this.ToString()+";\n");
+            }
+            return recolector;
         }
         
         public String ToString()
@@ -326,4 +333,18 @@ public class NCasilla {
             //return "Casilla" + this.Ptrcolumna.Letra + this.Ptrfila.Num;
         }
 */    
+
+    /**
+     * @return the lista
+     */
+    public ListaDoble getLista() {
+        return lista;
+    }
+
+    /**
+     * @param lista the lista to set
+     */
+    public void setLista(ListaDoble lista) {
+        this.lista = lista;
+    }
 }

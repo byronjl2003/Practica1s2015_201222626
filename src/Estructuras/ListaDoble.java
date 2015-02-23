@@ -164,30 +164,22 @@ public class ListaDoble {
         return recolector;
     }
 
-    /**
-     * @return the primero
-     */
+    
     public NodoLista getPrimero() {
         return primero;
     }
 
-    /**
-     * @param primero the primero to set
-     */
+    
     public void setPrimero(NodoLista primero) {
         this.primero = primero;
     }
 
-    /**
-     * @return the ultimo
-     */
+    
     public NodoLista getUltimo() {
         return ultimo;
     }
 
-    /**
-     * @param ultimo the ultimo to set
-     */
+    
     public void setUltimo(NodoLista ultimo) {
         this.ultimo = ultimo;
     }

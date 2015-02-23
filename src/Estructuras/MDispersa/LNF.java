@@ -99,6 +99,23 @@ public class LNF {
             else
                 return null;
         }
+        
+        public StringBuilder graffila()
+        {
+            StringBuilder recolector = new StringBuilder();
+            NF aux = this._primero;
+            while(aux!=null)
+            {
+                NCasilla aux2 = aux.getPrimero();
+                recolector.append("{rank = same;");
+                while(aux2!=null)
+                {
+                    recolector.append(aux2.graficaCasillaH());
+                }
+                recolector.append("\n"+"}");
+            }
+            return recolector;
+        }
 /*
         public StringBuilder[] GraficaHorizontal()
         {
