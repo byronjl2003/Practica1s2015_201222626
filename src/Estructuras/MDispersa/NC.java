@@ -124,7 +124,7 @@ public class NC {
 
         public StringBuilder GraficarColumna()
         {
-            StringBuilder recolector = new StringBuilder();
+           // StringBuilder recolector = new StringBuilder();
         }
         
         public StringBuilder GraficaEncabezado()

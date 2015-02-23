@@ -110,7 +110,7 @@ public class LNC {
         
         public StringBuilder GraficaColumna()
         {
-            StringBuilder recolector = new StringBuilder();
+            //StringBuilder recolector = new StringBuilder();
             
         }
         
