@@ -7,23 +7,23 @@ import Estructuras.NodoLista;
 import Estructuras.Pila;
 import javax.swing.JPanel;
 
-public class PanelCola implements Runnable {
 
-    Cola cola;
+public class PanelPila implements Runnable {
+    Pila pila;
     JPanel canvas;
-    int maxtam;
+    int maxtam; 
     
     
-    public PanelCola(Cola col, int tam)
+     public PanelPila(Pila pil, int tam)
     {
-        this.cola = col;
+        this.pila = pil;
         this.canvas = new JPanel();
         this.maxtam = tam;
         
     }
     
     public void redibujar()
-    {
+    {/*
         this.canvas.removeAll();
         ListaDoble nodos = this.cola.ObtenerPrimeros5();
         int tamy = canvas.getBounds().height;
@@ -36,13 +36,13 @@ public class PanelCola implements Runnable {
             conty+=40;
             
         }
+            */
     }
 
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
     
 }

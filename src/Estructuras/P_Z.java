@@ -11,7 +11,7 @@ public class P_Z extends JLabel implements Runnable {
     private ImageIcon  imagen;
     boolean tipoataque;
     int w;
-    NodoM contenedr;
+    //NodoM contenedr;
     public P_Z()
     {
         
@@ -36,6 +36,10 @@ public class P_Z extends JLabel implements Runnable {
         this.nombre = nombre;
     }
     
+    public String ToString()
+    {
+        return "ZOMBI";
+    }
     
     
     

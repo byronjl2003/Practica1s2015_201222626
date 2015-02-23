@@ -17,37 +17,81 @@ public class Tablero extends JPanel {
        this.setBounds(0, 0, 1000, 700);
        this.filas = fi;
        this.columnas = col;
+       this.setLayout(null);
        paneles = new FilaPanel[fi];
        
-       CrearFilas(this.columnas);
+       CrearFilas();
    }
    
-   public void CrearFilas(int col)
+   public void CrearFilas()
    {
        int y = 0;
-       int h = 700/filas;
+       int w = 70* this.columnas;
        for(int i=0;i<this.paneles.length;i++)
        {
-           this.paneles[i] = new FilaPanel();
-           this.paneles[i].setBounds(0, y,1000,h);
+           
+           this.paneles[i] = new FilaPanel(this.columnas,this.filas,i+1);
+           this.paneles[i].setBounds(0, y,w,70);
            this.add(this.paneles[i]);
-           y = y+h;
+           y = y+70;
            
        }
        }
    
    private class FilaPanel extends JPanel
    {
+       int columnas,filas;
+       int x=0;
+       int y=0;
+       Color colores[] = new Color[2];
+       public FilaPanel(int col,int fil,int flag)
+       {
+           this.columnas = col;
+           this.filas = fil;
+           CrearColores(flag%2);
+           
+       }
+       public void CrearColores(int flag)
+       {
+           System.out.println("EN FLAG EN LA CREACION DE COLORES: "+flag);
+           if(flag==0)
+           {
+               
+               colores[0] = new Color(128,255,0);
+               colores[1] = new Color(76,153,0);
+           }
+           else
+           {
+               colores[1] = new Color(128,255,0);
+               colores[0] = new Color(76,153,0);
+           }
+           
+       }
        @Override
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(Color.RED);
-		g2d.fillOval(0, 0, 30, 30);
-		g2d.drawOval(0, 50, 30, 30);		
-		g2d.fillRect(50, 0, 30, 30);
-		g2d.drawRect(50, 50, 30, 30);
+            
+            
+            Graphics2D g2d = (Graphics2D) g;
+            int colornum =0;
+            for(int i=0;i<this.columnas;i++)
+            {
+              System.out.println("Columna: "+(i+1));
+              g2d.setColor(colores[colornum]);
+              if(colornum==1)
+                  colornum=0;
+              else
+                  colornum++;
 
-		g2d.draw(new Ellipse2D.Double(0, 100, 30, 30));
+              g2d.fillRect(this.x,this.y,70,70);
+              System.out.println("SE DIBUJO EN: x: "+this.x+" y en y: "+this.y);
+              x=x+70;
+              //y=y+70;
+            }
+            x=0;
+            y=0;
+            
+            
+		
 	}
    }
    

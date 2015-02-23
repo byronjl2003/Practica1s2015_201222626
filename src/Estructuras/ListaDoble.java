@@ -65,6 +65,18 @@ public class ListaDoble {
             return null;
     }
     
+    public StringBuilder graficaMatriz()
+    {
+        StringBuilder recolector = new StringBuilder();
+        NodoLista aux = this.primero;
+        while(aux!=null)
+        {
+            recolector.append(aux.getPersonaje().toString()+"\\"+"n");
+            aux= aux.getNext();
+        }
+        return recolector;
+    }
+    
     public void Graficar(String archivo, String nombreimg)
     {
         try {

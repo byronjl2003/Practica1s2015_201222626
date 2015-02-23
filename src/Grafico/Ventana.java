@@ -5,6 +5,7 @@
  */
 package Grafico;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,18 +20,22 @@ public class Ventana {
     Tablero tab;
     public Ventana()
     {
-        tab = new Tablero(6,6);
+        /*
+        tab = new Tablero(10,10);
         ventana = new JFrame();
         ventana.setSize(1000,750);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.getContentPane().setLayout(null);
         ventana.add(tab);
         ventana.setVisible(true);
+                */
     }
     
     public static void main(String [] args)
     {
-        Ventana vent = new Ventana();
+       // Ventana vent = new Ventana();
+        
+        
     }
     
 }
