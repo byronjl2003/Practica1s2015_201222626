@@ -6,6 +6,12 @@
 package Grafico;
 
 
+import Estructuras.MDispersa.MDisp;
+import Estructuras.P_Z;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -13,27 +19,41 @@ import javax.swing.JPanel;
  *
  * @author Byron <Byron.Jose at your.org>
  */
-public class Ventana {
+public class Ventana extends JPanel {
     
     JFrame ventana;
-    JPanel panel;
-    Tablero tab;
-    public Ventana()
+    //JPanel canvas;
+        public Ventana()
     {
-        /*
-        tab = new Tablero(10,10);
-        ventana = new JFrame();
-        ventana.setSize(1000,750);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.getContentPane().setLayout(null);
-        ventana.add(tab);
-        ventana.setVisible(true);
-                */
+        
+      ventana = new JFrame();
+      this.setBounds(0, 0, 600, 489);
+      this.setLayout(null);
+      ventana.setSize(600,489);
+      ventana.add(this);
+      ventana.setVisible(true);
+      ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+                
+       
     }
     
+    @Override
+	public void paint(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            Dimension tam = getSize();
+            ImageIcon imagen = new ImageIcon("C:\\byron\\Fondo1.jpg");
+            g.drawImage(imagen.getImage(), 0, 0, tam.width,tam.height,null);
+            setOpaque(false);
+            super.paint(g);
+            
+		
+	}    
+        
+        
     public static void main(String [] args)
     {
-       // Ventana vent = new Ventana();
+       VentanaJugador vent = new VentanaJugador("ZOMBI");
         
         
     }

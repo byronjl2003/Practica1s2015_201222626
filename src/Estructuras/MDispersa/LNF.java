@@ -111,8 +111,10 @@ public class LNF {
                 while(aux2!=null)
                 {
                     recolector.append(aux2.graficaCasillaH());
+                    aux2 = aux2.getADerecha();
                 }
                 recolector.append("\n"+"}");
+                aux = aux.getNext();
             }
             return recolector;
         }

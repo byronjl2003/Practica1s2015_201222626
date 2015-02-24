@@ -6,6 +6,8 @@
 package Estructuras.MDispersa;
 
 import Estructuras.P_Z;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
@@ -31,16 +33,43 @@ public class MDisp {
 
         }
         
-        public void Graficar()
+        public void Graficar(String nombre)
         {
             StringBuilder recolector = new StringBuilder();
-            recolector.append("digraph g{"+"/n");
+            recolector.append("digraph g{"+"\n");
             recolector.append(this._lcolumnas.NodosGeneral()+"\n");
             recolector.append(this._lcolumnas.getListaFilas().graffila()+"\n");
             recolector.append(this._lcolumnas.GraficasCol()+"\n");
             recolector.append("\n");
+            recolector.append("}");
+            //return recolector;
             
+            FileWriter fichero = null;
+            PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Users\\S. Alexander\\Documents\\byron\\"+nombre+".txt");
+            pw = new PrintWriter(fichero);
+ 
+           
+                pw.println(recolector.toString());
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
         }
+        
+        }
+        
+        
         /*
         public StringBuilder[] graficarMDispersa()
         {

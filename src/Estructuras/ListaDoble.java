@@ -71,7 +71,7 @@ public class ListaDoble {
         NodoLista aux = this.primero;
         while(aux!=null)
         {
-            recolector.append(aux.getPersonaje().toString()+"\\"+"n");
+            recolector.append(aux.getPersonaje().ToString()+"\\"+"n");
             aux= aux.getNext();
         }
         return recolector;

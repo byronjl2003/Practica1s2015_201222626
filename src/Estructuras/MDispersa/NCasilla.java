@@ -83,16 +83,17 @@ public class NCasilla {
         public StringBuilder graficaCasillaH()
         {
             StringBuilder recolector = new StringBuilder();
-            if(this.getIzquierda()!=null)
+            /*if(this.getIzquierda()!=null)
             {
                 recolector.append(this.getIzquierda().ToString()+"->"+this.ToString()+";\n");
                 recolector.append(this.ToString()+"->"+this.getIzquierda().ToString()+";\n");
-            }
+            }*/
             if(this.getADerecha()!=null)
             {
                 recolector.append(this.ToString()+"->"+this.getADerecha().ToString()+";\n");
                 recolector.append(this.getADerecha().ToString()+"->"+this.ToString()+";\n");
             }
+            
             return recolector;
         }
         

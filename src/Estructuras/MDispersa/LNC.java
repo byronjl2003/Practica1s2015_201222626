@@ -140,7 +140,7 @@ public class LNC {
                         recolector.append(aux2.getArriba().ToString()+"->"+aux2.ToString()+";"+"\n");
                         recolector.append(aux2.ToString()+"->"+aux2.getArriba().ToString()+";"+"\n");
                     }
-                    
+                    aux2 = aux2.getAbajo();
                 }
                 aux = aux.getNext();
             }
