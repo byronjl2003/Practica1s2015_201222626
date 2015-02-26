@@ -77,15 +77,99 @@ public class ListaDoble {
         return recolector;
     }
     
-    public void Graficar(String archivo, String nombreimg)
+    
+    public void MiGraficar(String archivo, String nombreimg)
     {
         try {
-            CrearArchivo(nombreimg);
+            CrearMiArchivo(archivo);
       
-      String dotPath = "C:\\Users\\Keila\\Desktop\\release\\bin\\dot.exe";
+      String dotPath = "C:\\byron\\release\\bin\\dot.exe";
       
-      String fileInputPath = "C:\\Users\\Keila\\Documents\\byron\\"+archivo+".txt";
-      String fileOutputPath = "C:\\Users\\Keila\\Documents\\byron\\"+nombreimg+".jpg";
+      String fileInputPath = "C:\\byron\\"+archivo+".txt";
+      String fileOutputPath = "C:\\byron\\"+nombreimg+".jpg";
+      
+      String tParam = "-Tjpg";
+      String tOParam = "-o";
+        
+      String[] cmd = new String[5];
+      cmd[0] = dotPath;
+      cmd[1] = tParam;
+      cmd[2] = fileInputPath;
+      cmd[3] = tOParam;
+      cmd[4] = fileOutputPath;
+                  
+      Runtime rt = Runtime.getRuntime();
+      
+      rt.exec( cmd );
+      
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    } finally {
+    }
+    }
+    
+    
+    
+    
+    
+    public void CrearMiArchivo(String nom)
+    {
+        StringBuilder recolector = new StringBuilder();
+            recolector.append("digraph g{ \n");
+            NodoLista aux = this.primero;
+            while(aux!=null)
+            {
+                recolector.append(aux.getPersonaje().ToStringEnca());   
+                aux = aux.getNext();
+            }
+            recolector.append("{rank = same;");
+            NodoLista aux2 = this.primero;
+            while(aux2!=null)
+            {   if(aux2.getNext()!=null)
+                {
+                    recolector.append(aux2.getPersonaje().ToString() + "->" +aux2.getNext().getPersonaje().ToString()+";\n");
+                }
+                
+                
+                aux2 = aux2.getNext();
+            }
+            recolector.append("}\n");
+            recolector.append("}\n");
+            FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\byron\\"+nom+".txt");
+            pw = new PrintWriter(fichero);
+ 
+            
+                pw.println(recolector);
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+            
+           
+    }
+    
+    public void Grafica(String archivo, String nombreimg)
+    {
+        try {
+            CrearArchivo(archivo);
+      
+      String dotPath = "C:\\byron\\release\\bindot.exe";
+      
+      String fileInputPath = "C:\\byron\\"+archivo+".txt";
+      String fileOutputPath = "C:\\byron\\"+nombreimg+".jpg";
       
       String tParam = "-Tjpg";
       String tOParam = "-o";
@@ -126,11 +210,11 @@ public class ListaDoble {
         PrintWriter pw = null;
         try
         {
-            fichero = new FileWriter("C:\\Users\\Keila\\Documents\\byron\\"+nombre+".txt");
+            fichero = new FileWriter("C:\\byron\\"+nombre+".txt");
             pw = new PrintWriter(fichero);
  
-            for (int i = 0; i < 10; i++)
-                pw.println("Linea " + i);
+            
+                pw.println(constructor);
  
         } catch (Exception e) {
             e.printStackTrace();

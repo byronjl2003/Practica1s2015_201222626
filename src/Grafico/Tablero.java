@@ -1,10 +1,29 @@
 
 package Grafico;
 
+import Estructuras.Cola;
+import Estructuras.MDispersa.MDisp;
+import Estructuras.P_Z;
+import Estructuras.Pila;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetAdapter;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
+import java.util.Random;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Tablero extends JPanel {
@@ -12,8 +31,15 @@ public class Tablero extends JPanel {
     int filas=0;
     int columnas = 0;
     FilaPanel paneles[];
-   public Tablero(int fi,int col)
+    MDisp matriz = new MDisp();
+    PanelPila tabpila ;
+    PanelCola abcola;
+    P_Z actualpila, actualcola;
+    DataFlavor dataFlavor;
+   public Tablero(int fi,int col,Pila pila, Cola cola)
    {
+       dataFlavor = new DataFlavor(P_Z.class,
+			P_Z.class.getSimpleName());
        this.setBounds(0, 0, 1000, 700);
        this.filas = fi;
        this.columnas = col;
@@ -25,6 +51,12 @@ public class Tablero extends JPanel {
    
    public void CrearFilas()
    {
+        DragSource ds1 = new DragSource();
+            DragSource ds2 = new DragSource();
+		ds1.createDefaultDragGestureRecognizer(actualpila,
+				DnDConstants.ACTION_MOVE, new DragGestureListImp(actualpila));
+                ds2.createDefaultDragGestureRecognizer(actualcola,
+				DnDConstants.ACTION_MOVE, new DragGestureListImp(actualcola));
        int y = 0;
        int w = 70* this.columnas;
        for(int i=0;i<this.paneles.length;i++)
@@ -34,6 +66,10 @@ public class Tablero extends JPanel {
            this.paneles[i].setBounds(0, y,w,70);
            this.add(this.paneles[i]);
            y = y+70;
+           //--------------------------------------
+           
+           
+		new MyDropTargetListImp(this.paneles[i]);
            
        }
        }
@@ -94,6 +130,96 @@ public class Tablero extends JPanel {
 		
 	}
    }
+   
+   class TransferableP_Z implements Transferable {
+ 
+		private P_Z per;
+ 
+		public TransferableP_Z(P_Z ani) {
+			this.per = ani;
+		}
+ 
+		@Override
+		public DataFlavor[] getTransferDataFlavors() {
+			return new DataFlavor[] { dataFlavor };
+		}
+ 
+		@Override
+		public boolean isDataFlavorSupported(DataFlavor flavor) {
+			return flavor.equals(dataFlavor);
+		}
+ 
+		@Override
+		public Object getTransferData(DataFlavor flavor)
+				throws UnsupportedFlavorException, IOException {
+ 
+			if (flavor.equals(dataFlavor))
+				return per;
+			else
+				throw new UnsupportedFlavorException(flavor);
+		}
+	}
+ 
+	class DragGestureListImp implements DragGestureListener {
+ 
+            P_Z label;
+            public DragGestureListImp(P_Z ind)
+            {
+                this.label =ind;
+            }
+		@Override
+		public void dragGestureRecognized(DragGestureEvent event) {
+			Cursor cursor = null;
+			P_Z lblAnimal = (P_Z) event.getComponent();
+                        if(lblAnimal==label)
+			if (event.getDragAction() == DnDConstants.ACTION_COPY) {
+				cursor = DragSource.DefaultCopyDrop;
+			}
+			P_Z animal = lblAnimal;
+ 
+			event.startDrag(cursor, new TransferableP_Z(animal));
+		}
+	}
+ 
+	class MyDropTargetListImp extends DropTargetAdapter implements
+			DropTargetListener {
+ 
+		private DropTarget dropTarget;
+		private JPanel panel;
+ 
+		public MyDropTargetListImp(JPanel panel) {
+			this.panel = panel;
+ 
+			dropTarget = new DropTarget(panel, DnDConstants.ACTION_COPY, this,
+					true, null);
+		}
+ 
+		public void drop(DropTargetDropEvent event) {
+			try {
+				Transferable tr = event.getTransferable();
+				P_Z an = (P_Z) tr.getTransferData(dataFlavor);
+ 
+				if (event.isDataFlavorSupported(dataFlavor)) {
+					event.acceptDrop(DnDConstants.ACTION_COPY);
+                                        //JLabelAnimal ta = new JLabelAnimal(an);
+                                        Random rn = new Random();
+					int x = rn.nextInt(300)+1;
+                                        int y = rn.nextInt(300)+1;
+                                        an.setBounds(x,y, 200, 200);
+                                        this.panel.add(an);
+					event.dropComplete(true);
+					this.panel.validate();
+                                        System.out.println(this.panel.getComponentCount());
+					return;
+				}
+				event.rejectDrop();
+			} catch (Exception e) {
+				e.printStackTrace();
+				event.rejectDrop();
+			}
+		}
+	}
+   
    
    }
 

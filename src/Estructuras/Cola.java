@@ -19,7 +19,7 @@ public class Cola extends ListaDoble {
     
     public void graficar()
     {
-        Graficar("Cola","pilaimg");
+        Grafica("Cola","pilaimg");
     }
     
     public ListaDoble ObtenerPrimeros5()

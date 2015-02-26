@@ -18,6 +18,6 @@ public class Pila extends ListaDoble {
     
     public void graficar()
     {
-        Graficar("PILA","pilaimg");
+        Grafica("PILA","pilaimg");
     }
 }
