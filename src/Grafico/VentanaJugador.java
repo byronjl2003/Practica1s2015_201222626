@@ -190,7 +190,7 @@ public class VentanaJugador extends JPanel implements ActionListener {
            for(int i=0;i<componentes.length;i++)
            {
                JTextField aux = (JTextField)componentes[i];
-               nodo.getLstuff().Insertar(aux.getText(),"CATALOGO");
+               nodo.getLstuff().Insertar(aux.getText(),this.Tipo);
            }
         }
         else if(e.getSource()==this.btnregresar)
